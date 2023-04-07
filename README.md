@@ -81,7 +81,7 @@ kontrollerinin yapılması.
 	
 kontrollerinin yapılması. 
 
-8-) Put metodu ile random bir guid oluşturup request atınız. (Guid için postman dynamic variable kullanın). Dönen cevaba göre;
+8-) Delete metodu ile random bir guid oluşturup request atınız. (Guid için postman dynamic variable kullanın). Dönen cevaba göre;
 
 	• Response Code(status = 400)
 	
