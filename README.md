@@ -4,7 +4,7 @@
 
 • Mock url: https://b42b12e0-722b-4139-bd4b-285429e4e675.mock.pstmn.io
 
-• Authorization tab'ında type API Key seçildikten sonra key field'ına "x-api-key" yazılmalı. Value kısmına ise key value: "PMAK-6433c3d191706756b3bdf1ae-61dd8dac1129d5d0fc5a47aa69472f231e" yazılmalı. Add to header seçildikten sonra çalışma yapılmalı.
+• Authorization tab'ında type API Key seçildikten sonra key field'ına "x-api-key" yazılmalı. Value kısmına ise api key yazılmalıdır. Bu "API Key" mail olarak paylaşılacaktır. Add to field kısmı "Header" seçildikten sonra çalışma yapılmalı.
 
 Yeni bir collection oluşturup bu collection üzerinden çalışma yapılmasını bekliyoruz. Bu collection'ında, body ve response'lar JSON formatına göre oluşturulup kontrol edilmesi ve Post - Get - Put - Delete metotları ile request gönderilip response'da dönen key value'lara göre soruların cevapları beklenmektedir. 
 
