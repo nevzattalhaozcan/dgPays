@@ -1,9 +1,22 @@
 # Görev
-Projede SDET.postman_collection.json isimli dosya bulunmaktadır. Postman collection'ında bulunan API'ler için JSON formatında, Post - Get - Put - Delete metotları ile request gönderilip response'da dönen key ve key value'lara göre soruların cevapları beklenmektedir. Tek bir 'Post' metodu altında script yazımı beklenmektedir.
 
-Collection'da bulunan request'lerle ilgili dokümanı ayrı olarak incelenmek istenirse:
-https://documenter.getpostman.com/view/24419403/2s8ZDbWgPN
+• Çalışmayla ilgili doküman linki: https://documenter.getpostman.com/view/24419403/2s8ZDbWgPN
 
+• Mock url: https://b42b12e0-722b-4139-bd4b-285429e4e675.mock.pstmn.io
+
+• Authorization tab'ında type API Key seçildikten sonra key field'ına x-api-key yazılmalı. Value kısmına ise key value: PMAK-6433c3d191706756b3bdf1ae-61dd8dac1129d5d0fc5a47aa69472f231e yazılmalı. Add to header seçildikten sonra çalışma yapılmalı.
+
+Yeni bir collection oluşturup bu collection üzerinden çalışma yapılmasını bekliyoruz. Bu collection'ında, body ve response'lar JSON formatına göre oluşturulup kontrol edilmesi ve Post - Get - Put - Delete metotları ile request gönderilip response'da dönen key value'lara göre soruların cevapları beklenmektedir. 
+
+• Değişkenler pre-request script tab'ında tanımlanmalıdır.
+
+• Test tab'ında ise tek bir 'Post' metodu altında case yazımı beklenmektedir.
+
+• JSON body'de belirtilen data tiplerine göre metod yazımı beklenmektedir.
+
+• Çalışma tamamlandıktan sonra çalışma yapılan collection github'a versiyon kontrolü ile push edilmesi beklenmektedir.
+
+Script'te bulunan her request için url, method, body, headers bilgileri bulunmalı.
 
 1-) Post metodu ile request gönderilip dönen cevaba göre;
 
@@ -17,15 +30,15 @@ https://documenter.getpostman.com/view/24419403/2s8ZDbWgPN
 
  kontrollerinin yapılması. 
 
-2-) Post metodu ile request'te gönderilen body altında bulunan key'lerden name key'i manipüle edilip property value'su undefined set edilerek request gönderilmeli. Dönen cevaba göre;
+2-) Post metodu ile request'te gönderilen body altında bulunan value'lar "" şeklinde set edilir. Daha sonra name key'i manipüle edilip value'su undefined set edilerek request gönderilmeli. Dönen cevaba göre;
 
-	• Response Code(status = 200),
+	• Response Code(status = 400),
 	
 	• Error'daki key'ler,
 	
 	• Validation Error'daki key'ler,
 	
-	• Validation Error'da bulunan mesajın key value'sının boş olmadığı,
+	• Validation Error'da bulunan mesajın value'sunun boş olmadığı,
 	
 	• Validation Error'da bulunan hata kodunu yakalama
 	
@@ -94,7 +107,3 @@ kontrollerinin yapılması.
 	• Error'da bulunan hata kodunu yakalama
 	
 kontrollerinin yapılması. 
-	
-	
-
-
