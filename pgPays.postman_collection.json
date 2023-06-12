@@ -1,0 +1,453 @@
+{
+	"info": {
+		"_postman_id": "0b5c924f-b33e-4cc4-9242-9946a86e7854",
+		"name": "pgPays",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create dg -test",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function randomString(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
+							"    if (!minValue) {\r",
+							"        minValue = 3;\r",
+							"        maxValue = 6;\r",
+							"    }\r",
+							"\r",
+							"    if (!maxValue) {\r",
+							"        maxValue = minValue;\r",
+							"    }\r",
+							"\r",
+							"    let length = _.random(minValue, maxValue),\r",
+							"        randomString = \"\";\r",
+							"\r",
+							"    for (let i = 0; i < length; i++)\r",
+							"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
+							"    return randomString;\r",
+							"}\r",
+							"pm.variables.set('randomString', randomString());\r",
+							"\r",
+							"var code = pm.variables.replaceIn(\"{{$randomAlphaNumeric}}\");\r",
+							"pm.globals.set(\"randomCode\", code);\r",
+							"\r",
+							"var randomInteger3_5 = _.random(100,99999)\r",
+							"pm.collectionVariables.set(\"randomInteger\", randomInteger3_5);\r",
+							"//console.log(randomInteger3_5)\r",
+							"\r",
+							"var date = pm.variables.replaceIn(\"{{$randomCity}}\");\r",
+							"pm.collectionVariables.set(\"randomDate\", date);\r",
+							"//console.log(date)\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response Keys Validation\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"message\");\r",
+							"\r",
+							"});\r",
+							"pm.test(\"Error.message not empty\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.log(jsonData.error)\r",
+							"    pm.expect(jsonData.error.message).not.eq('');\r",
+							"\r",
+							"});\r",
+							"pm.test(\"badRequest catch\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.error.name).eq('badRequest');\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"{{randomCode}}\",\r\n  \"name\": {{randomString}},\r\n  \"productGroupId\": \"{{$guid}}\",\r\n  \"BankAccount\": \"{{$randomBankAccount}}\",\r\n  \"FinanceSource\":\"{{$randomInt}}\",\r\n  \"BirthDate\": \"{{randomDate}}\",\r\n  \"financeType\": {{randomInteger}},\r\n  \"dateDifference\": {{$randomInt}},\r\n  \"isActive\": {{$randomBoolean}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/dgpays",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"dgpays"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create dg +test",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function randomString(minValue, maxValue, dataSet = 'abcdefghijklmnopqrstuvwxyz123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {\r",
+							"    if (!minValue) {\r",
+							"        minValue = 3;\r",
+							"        maxValue = 6;\r",
+							"    }\r",
+							"\r",
+							"    if (!maxValue) {\r",
+							"        maxValue = minValue;\r",
+							"    }\r",
+							"\r",
+							"    let length = _.random(minValue, maxValue),\r",
+							"        randomString = \"\";\r",
+							"\r",
+							"    for (let i = 0; i < length; i++)\r",
+							"        randomString += dataSet.charAt(Math.floor(Math.random() * dataSet.length));\r",
+							"    return randomString;\r",
+							"}\r",
+							"pm.variables.set('randomString', randomString());\r",
+							"\r",
+							"var code = pm.variables.replaceIn(\"{{$randomAlphaNumeric}}\");\r",
+							"pm.globals.set(\"randomCode\", code);\r",
+							"\r",
+							"var randomInteger3_5 = _.random(100,99999)\r",
+							"pm.collectionVariables.set(\"randomInteger\", randomInteger3_5);\r",
+							"//console.log(randomInteger3_5)\r",
+							"\r",
+							"const moment = require('moment')\r",
+							"let futureDate = pm.variables.replaceIn('{{$randomDateFuture}}'),\r",
+							"futureDates = moment(futureDate).format()\r",
+							"console.log(futureDates)\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"//console.log(jsonData)\r",
+							"pm.collectionVariables.set(\"variable_id\", jsonData.id);\r",
+							"//console.log(pm.collectionVariables.get(\"variable_id\"))\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response Key/Value Validation\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(\"d78e8236-ef08-5f1c-a34b-de7ed4087b49\")\r",
+							"\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"{{randomCode}}\",\r\n  \"name\": \"{{randomString}}\",\r\n  \"productGroupId\": \"{{$guid}}\",\r\n  \"BankAccount\": \"{{$randomBankAccount}}\",\r\n  \"FinanceSource\":\"{{$randomInt}}\",\r\n  \"BirthDate\": \"{{randomDate}}\",\r\n  \"financeType\": {{randomInteger}},\r\n  \"dateDifference\": {{$randomInt}},\r\n  \"isActive\": {{$randomBoolean}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/dgpays",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"dgpays"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get dg positive test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"pm.test(\"Test array not empty\", () => {\r",
+							"  pm.expect(jsonData).not.to.be.empty;   \r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test data type of the response\", () => {\r",
+							"  pm.expect(jsonData).to.be.an(\"array\");\r",
+							"  \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/dgpays/{{variable_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"dgpays",
+						"{{variable_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put dg -test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response Key Validation\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"code\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"message\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"pm.test(\"Message not null\", () => {\r",
+							"  pm.expect(jsonData.message).not.to.be.null;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Message error code catch\", function () {\r",
+							"    pm.expect(pm.response.json().error.code).to.eql(\"ERR_ACCNT_10\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/dgpays/{{$guid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"dgpays",
+						"{{$guid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put dg +test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Basarili\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/dgpays/{{variable_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"dgpays",
+						"{{variable_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete dg +test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Basarili\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/dgpays/{{variable_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"dgpays",
+						"{{variable_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete dg -test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"//devamlı 200 dönüyor"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/dgpays/{{$guid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"dgpays",
+						"{{$guid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "PMAK-6481db845a70ad244e30225e-c6aeefb5ca122cd595bf39fbc9297cf898",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "x-api-key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://b42b12e0-722b-4139-bd4b-285429e4e675.mock.pstmn.io"
+		},
+		{
+			"key": "url",
+			"value": ""
+		},
+		{
+			"key": "randomInteger",
+			"value": ""
+		},
+		{
+			"key": "variable_id",
+			"value": ""
+		},
+		{
+			"key": "randomDate",
+			"value": ""
+		}
+	]
+}
