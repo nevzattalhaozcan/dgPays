@@ -6,7 +6,7 @@
 
 • Authorization tab'ında type API Key seçildikten sonra key field'ına "x-api-key" yazılmalı. Value kısmına ise api key yazılmalıdır. Bu "API Key" mail olarak paylaşılacaktır. Add to field kısmı "Header" seçildikten sonra çalışma yapılmalıdır.c
 
-Yeni bir collection oluşturup bu collection üzerinden çalışma yapılmasını bekliyoruz. Bu collection'ında, body ve response'lar JSON formatına göre oluşturulup kontrol edilmesi ve Post - Get - Put - Delete metotları ile request gönderilip response'da dönen key value'lara göre soruların cevapları beklenmektedir. 
+Yeni bir collection oluşturup sadece bu collection üzerinden çalışma yapılmasını bekliyoruz. Bu collection'ında, body ve response'lar JSON formatına göre oluşturulup kontrol edilmesi, tek bir 'Post' metodu ile Post - Get - Put - Delete metotları bir request altında olacak şekilde kullanılmasını ve case yazımının test tab'ında olması beklenmektedir. Bir nesne oluşturup nesne içerisinde fonksiyonların tanımlanmasını ve bu fonksiyonların body'de kullanılmasını bekliyoruz. Request gönderilip response'da dönen key value'lara göre soruların cevapları beklenmektedir. 
 
 • Değişkenler pre-request script tab'ında tanımlanmalıdır.
 
@@ -17,6 +17,7 @@ Yeni bir collection oluşturup bu collection üzerinden çalışma yapılmasın�
 • Çalışma tamamlandıktan sonra çalışma yapılan collection github'a versiyon kontrolü ile push edilmesi beklenmektedir.
 
 Script'te bulunan her request için url, method, body, headers bilgileri bulunmalı.
+
 
 1-) Post metodu ile request gönderilip dönen cevaba göre;
 
