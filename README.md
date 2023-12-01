@@ -2,7 +2,7 @@
 
 • Çalışmayla ilgili doküman linki: https://documenter.getpostman.com/view/24419403/2s8ZDbWgPN
 
-• Mock url: https://b42b12e0-722b-4139-bd4b-285429e4e675.mock.pstmn.io
+• Mock url: https://787b4ca6-3ce1-4903-8150-90acc1c59914.mock.pstmn.io
 
 • Authorization tab'ında type API Key seçildikten sonra key field'ına "x-api-key" yazılmalı. Value kısmına ise api key yazılmalıdır. Bu "API Key" mail olarak paylaşılacaktır. Add to field kısmı "Header" seçildikten sonra çalışma yapılmalıdır.c
 
